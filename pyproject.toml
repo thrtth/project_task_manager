@@ -12,6 +12,8 @@ psycopg2-binary = "^2.9.9"
 dj-database-url = "^2.2.0"
 python-dotenv = "^1.0.1"
 whitenoise = {extras = ["brotli"], version = "^6.7.0"}
+gunicorn = "^22.0.0"
+uvicorn = "^0.30.3"
 
 
 [build-system]
