@@ -1,0 +1,42 @@
+{% load django_bootstrap5 %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Task manager Hexlet</title>
+    {% bootstrap_css %}
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">{% translate 'Task manager' %}</a>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link"  href="#">{% translate 'Users' %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">{% translate 'Login' %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">{% translate 'Registration' %}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<main class="flex-grow-1">
+    <div class="container-lg mt-4">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+</main>
+  {% bootstrap_javascript %}
+  </body>
+</html>
