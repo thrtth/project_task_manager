@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.utils.translation import gettext as _
+from django.views import View
 
 
-def index(request):
-    text = _('Hello!')
-    return render(request, 'index.html', {'text': text})
+class IndexView(View):
+
+    def get(self, request, *args, **kwargs):
+        text = _('Hello!')
+        return render(request, 'index.html', {'text': text})
