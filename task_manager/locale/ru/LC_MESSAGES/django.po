@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 18:58+0700\n"
+"POT-Creation-Date: 2024-08-01 23:29+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,126 +16,164 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+#: .\statuses\forms.py:13 .\templates\statuses\status_create.html:12
+#: .\templates\statuses\status_update.html:12
+#: .\templates\statuses\statuses.html:11
+msgid "Name"
+msgstr ""
+
+#: .\statuses\views.py:30
+msgid "Status successfully created"
+msgstr ""
+
+#: .\statuses\views.py:40
+msgid "Status successfully updated"
+msgstr ""
 
 #: .\templates\base.html:14
 msgid "Task manager"
-msgstr "Менеджер задач"
+msgstr ""
 
 #: .\templates\base.html:19 .\templates\users\users.html:5
 msgid "Users"
-msgstr "Пользователи"
+msgstr ""
 
 #: .\templates\base.html:23 .\templates\users\login.html:5
-#: .\templates\users\login.html:35
+#: .\templates\users\login.html:22
 msgid "Login"
-msgstr "Вход"
+msgstr ""
 
 #: .\templates\base.html:26 .\templates\users\user_create.html:5
 msgid "Registration"
-msgstr "Регистрация"
+msgstr ""
 
-#: .\templates\base.html:32
+#: .\templates\base.html:30 .\templates\statuses\statuses.html:5
+msgid "Statuses"
+msgstr ""
+
+#: .\templates\base.html:35
 msgid "Logout"
-msgstr "Выход"
+msgstr ""
 
-#: .\templates\users\login.html:25 .\templates\users\user_create.html:33
-#: .\templates\users\user_update.html:33 .\templates\users\users.html:10
-#: .\users\forms.py:17 .\users\forms.py:41 .\users\forms.py:42
+#: .\templates\statuses\status_create.html:5
+#: .\templates\statuses\statuses.html:6
+msgid "Create status"
+msgstr ""
+
+#: .\templates\statuses\status_create.html:16
+msgid "Create"
+msgstr ""
+
+#: .\templates\statuses\status_delete.html:5
+msgid "Delete status"
+msgstr ""
+
+#: .\templates\statuses\status_delete.html:8
+#: .\templates\users\user_delete.html:8
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: .\templates\statuses\status_delete.html:9
+#: .\templates\statuses\statuses.html:24 .\templates\users\user_delete.html:9
+#: .\templates\users\users.html:25
+msgid "Delete"
+msgstr ""
+
+#: .\templates\statuses\status_delete.html:10
+#: .\templates\users\user_delete.html:10
+msgid "Cancel"
+msgstr ""
+
+#: .\templates\statuses\status_update.html:5
+msgid "Update status"
+msgstr ""
+
+#: .\templates\statuses\status_update.html:16
+#: .\templates\users\user_update.html:24
+msgid "Update"
+msgstr ""
+
+#: .\templates\statuses\statuses.html:12 .\templates\users\users.html:12
+msgid "Creation date"
+msgstr ""
+
+#: .\templates\statuses\statuses.html:23 .\templates\users\users.html:24
+msgid "Edit"
+msgstr ""
+
+#: .\templates\users\login.html:12 .\templates\users\user_create.html:20
+#: .\templates\users\user_update.html:20 .\templates\users\users.html:10
+#: .\users\forms.py:23 .\users\forms.py:57 .\users\forms.py:74
+#: .\users\forms.py:78
 msgid "Username"
-msgstr "Имя пользователя"
+msgstr ""
 
-#: .\templates\users\login.html:30 .\templates\users\user_create.html:37
-#: .\templates\users\user_update.html:37 .\users\forms.py:20
-#: .\users\forms.py:46 .\users\forms.py:47
+#: .\templates\users\login.html:17 .\templates\users\user_create.html:24
+#: .\users\forms.py:41 .\users\forms.py:83 .\users\forms.py:87
 msgid "Password"
-msgstr "Пароль"
+msgstr ""
 
-#: .\templates\users\user_create.html:25 .\templates\users\user_update.html:25
-#: .\users\forms.py:18
+#: .\templates\users\user_create.html:12 .\templates\users\user_update.html:12
+#: .\users\forms.py:28 .\users\forms.py:62
 msgid "First name"
-msgstr "Имя"
+msgstr ""
 
-#: .\templates\users\user_create.html:29 .\templates\users\user_update.html:29
-#: .\users\forms.py:19
+#: .\templates\users\user_create.html:16 .\templates\users\user_update.html:16
+#: .\users\forms.py:33 .\users\forms.py:67
 msgid "Last name"
-msgstr "Фамилия"
+msgstr ""
 
-#: .\templates\users\user_create.html:43 .\templates\users\user_update.html:43
+#: .\templates\users\user_create.html:29
 msgid "Password confirm"
-msgstr "Подтверждение пароля"
+msgstr ""
 
-#: .\templates\users\user_create.html:48
+#: .\templates\users\user_create.html:33
 msgid "Register"
-msgstr "Зарегистрировать"
+msgstr ""
 
 #: .\templates\users\user_delete.html:5
 msgid "Delete user"
-msgstr "Удаление пользователя"
-
-#: .\templates\users\user_delete.html:8
-msgid "Are you sure you want to delete"
-msgstr "Вы уверены, что хотите удалить"
-
-#: .\templates\users\user_delete.html:9 .\templates\users\users.html:25
-msgid "Delete"
-msgstr "Удалить"
-
-#: .\templates\users\user_delete.html:10
-msgid "Cancel"
-msgstr "Отмена"
+msgstr ""
 
 #: .\templates\users\user_update.html:5
 msgid "Update user"
-msgstr "Изменение пользователя"
+msgstr ""
 
 #: .\templates\users\users.html:11
 msgid "Full name"
-msgstr "Полное имя"
+msgstr ""
 
-#: .\templates\users\users.html:12
-msgid "Creation date"
-msgstr "Дата создания"
-
-#: .\templates\users\users.html:24
-msgid "Edit"
-msgstr "Изменить"
-
-#: .\users\forms.py:9
-msgid "Password Confirm"
-msgstr "Подтверждение пароля"
-
-#: .\users\forms.py:10
+#: .\users\forms.py:45
 msgid "Confirm Password"
-msgstr "Подтверждение пароля"
-
-#: .\users\forms.py:28
-msgid "Passwords do not match"
-msgstr "Пароли не совпадают"
-
-#: .\users\views.py:27
-msgid "User successfully added"
-msgstr "Пользователь успешно добавлен"
+msgstr ""
 
 #: .\users\views.py:39
+msgid "User successfully added"
+msgstr ""
+
+#: .\users\views.py:49
 msgid "User successfully updated"
-msgstr "Пользователь успешно обновлен"
+msgstr ""
 
-#: .\users\views.py:45
+#: .\users\views.py:55
 msgid "You do not have permission to edit another user"
-msgstr "У вас нет прав для изменения другого пользователя"
-
-#: .\users\views.py:58
-msgid "You do not have permission to delete another user"
-msgstr "У вас нет прав для удаления другого пользователя"
+msgstr ""
 
 #: .\users\views.py:70
-msgid "You are logged in"
-msgstr "Вы залогинены"
+msgid "You do not have permission to delete another user"
+msgstr ""
 
-#: .\users\views.py:78
+#: .\users\views.py:80
+msgid "You are logged in"
+msgstr ""
+
+#: .\users\views.py:87
 msgid "You are logged out"
-msgstr "Вы разлогинены"
+msgstr ""
 
 #: .\views.py:9
 msgid "Hello!"
-msgstr "Привет!"
+msgstr ""

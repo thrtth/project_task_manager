@@ -1,14 +1,12 @@
 import pytest
+from django.contrib.auth.models import User
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
 
 USERNAME = 'newuser'
 FIRST_NAME = 'newname'
 LAST_NAME = 'newlastname'
-PASSWORD = 'pass12345'
-PASSWORD_CONFIRM = 'pass12345'
+PASSWORD1 = 'pass12345'
+PASSWORD2 = 'pass12345'
 UPDATE_USERNAME = 'updateuser'
 
 
@@ -18,14 +16,14 @@ def create_user(db):
         username=USERNAME,
         first_name=FIRST_NAME,
         last_name=LAST_NAME,
-        password=PASSWORD,
+        password=PASSWORD1,
     )
     return user
 
 
 @pytest.fixture
 def login_user(client, create_user):
-    client.login(username=create_user.username, password=PASSWORD)
+    client.login(username=create_user.username, password=PASSWORD1)
     return create_user
 
 
@@ -35,8 +33,8 @@ def test_create_user(client):
         'username': USERNAME,
         'first_name': FIRST_NAME,
         'last_name': LAST_NAME,
-        'password': PASSWORD,
-        'password_confirm': PASSWORD_CONFIRM,
+        'password1': PASSWORD1,
+        'password2': PASSWORD2,
     })
     assert response.status_code == 302
     assert User.objects.filter(username=USERNAME).exists()
@@ -51,11 +49,9 @@ def test_users_list(client, create_user):
 
 @pytest.mark.django_db
 def test_user_update(client, login_user):
-    response = client.post(reverse('user_update', kwargs={'pk': login_user.pk}), {
-        'username': UPDATE_USERNAME,
-        'password': PASSWORD,
-        'password_confirm': PASSWORD_CONFIRM,
-    })
+    response = client.post(reverse('user_update',
+                                   kwargs={'pk': login_user.pk}),
+                           {'username': UPDATE_USERNAME, })
     assert response.status_code == 302
     login_user.refresh_from_db()
     assert login_user.username == UPDATE_USERNAME
@@ -63,6 +59,7 @@ def test_user_update(client, login_user):
 
 @pytest.mark.django_db
 def test_user_delete(client, login_user):
-    response = client.post(reverse('user_delete', kwargs={'pk': login_user.pk}))
+    response = client.post(reverse('user_delete',
+                                   kwargs={'pk': login_user.pk}))
     assert response.status_code == 302
     assert not User.objects.filter(pk=login_user.pk).exists()
