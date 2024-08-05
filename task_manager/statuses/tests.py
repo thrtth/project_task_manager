@@ -19,7 +19,7 @@ def user(db):
 
 @pytest.fixture
 def logged_client(client, user):
-    client.login(username=USERNAME, password=PASSWORD)
+    client.login(username=user.username, password=PASSWORD)
     return client
 
 
@@ -28,6 +28,7 @@ def create_status(db):
     return Status.objects.create(name=STATUS_NAME)
 
 
+@pytest.mark.django_db
 def test_status_create(logged_client):
     response = logged_client.post(reverse('status_create'),
                                   {'name': STATUS_NAME})
@@ -35,12 +36,14 @@ def test_status_create(logged_client):
     assert Status.objects.filter(name=STATUS_NAME).exists()
 
 
+@pytest.mark.django_db
 def test_status_read(logged_client, create_status):
     response = logged_client.get(reverse('statuses'))
     assert response.status_code == 200
     assert STATUS_NAME in response.content.decode()
 
 
+@pytest.mark.django_db
 def test_status_update(logged_client, create_status):
     status = create_status
     response = logged_client.post(reverse('status_update',
@@ -51,6 +54,7 @@ def test_status_update(logged_client, create_status):
     assert status.name == STATUS_NAME_NEW
 
 
+@pytest.mark.django_db
 def test_status_delete(logged_client, create_status):
     status = create_status
     response = logged_client.post(reverse('status_delete',

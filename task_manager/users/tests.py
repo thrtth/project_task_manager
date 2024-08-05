@@ -21,12 +21,6 @@ def create_user(db):
     return user
 
 
-@pytest.fixture
-def login_user(client, create_user):
-    client.login(username=create_user.username, password=PASSWORD1)
-    return create_user
-
-
 @pytest.mark.django_db
 def test_create_user(client):
     response = client.post(reverse('user_create'), {
@@ -48,18 +42,22 @@ def test_users_list(client, create_user):
 
 
 @pytest.mark.django_db
-def test_user_update(client, login_user):
+def test_user_update(client, create_user):
+    client.login(username=create_user.username, password=PASSWORD1)
     response = client.post(reverse('user_update',
-                                   kwargs={'pk': login_user.pk}),
-                           {'username': UPDATE_USERNAME, })
+                                   kwargs={'pk': create_user.pk}),
+                           {'username': UPDATE_USERNAME,
+                            'first_name': FIRST_NAME,
+                            'last_name': LAST_NAME})
     assert response.status_code == 302
-    login_user.refresh_from_db()
-    assert login_user.username == UPDATE_USERNAME
+    create_user.refresh_from_db()
+    assert create_user.username == UPDATE_USERNAME
 
 
 @pytest.mark.django_db
-def test_user_delete(client, login_user):
+def test_user_delete(client, create_user):
+    client.login(username=create_user.username, password=PASSWORD1)
     response = client.post(reverse('user_delete',
-                                   kwargs={'pk': login_user.pk}))
+                                   kwargs={'pk': create_user.pk}))
     assert response.status_code == 302
-    assert not User.objects.filter(pk=login_user.pk).exists()
+    assert not User.objects.filter(pk=create_user.pk).exists()

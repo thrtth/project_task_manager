@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">{% translate 'Update task' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        {% include 'errors.html' %}
+
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.name.id_for_label }}">{% translate 'Name' %}</label>
+            {{ form.name }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.description.id_for_label }}">{% translate 'Description' %}</label>
+            {{ form.description }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.status.id_for_label }}">{% translate 'Status' %}</label>
+            {{ form.status }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.executor.id_for_label }}">{% translate 'Executor' %}</label>
+            {{ form.executor }}
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
+
+    </form>
+</div>
+{% endblock %}

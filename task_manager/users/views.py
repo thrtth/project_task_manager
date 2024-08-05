@@ -6,7 +6,8 @@ from django.contrib.auth.views import (
     LogoutView
 )
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import get_object_or_404, redirect
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -14,7 +15,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from task_manager.users.forms import (
     CustomUserCreateForm,
@@ -49,7 +50,7 @@ class UserUpdateView(LoginRequiredMixin,
     success_message = _('User successfully updated')
 
     def dispatch(self, request, *args, **kwargs):
-        obj = get_object_or_404(User, pk=self.kwargs['pk'])
+        obj = self.get_object()
         if obj != self.request.user:
             messages.error(self.request,
                            _('You do not have permission'
@@ -64,13 +65,17 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('users_list')
 
     def dispatch(self, request, *args, **kwargs):
-        obj = get_object_or_404(User, pk=self.kwargs['pk'])
-        if obj != self.request.user:
-            messages.error(self.request,
-                           _('You do not have permission'
-                             ' to delete another user'))
-            return redirect('users_list')
-        return super().dispatch(request, *args, **kwargs)
+        try:
+            obj = self.get_object()
+            if obj != self.request.user:
+                messages.error(self.request,
+                               _('You do not have permission'
+                                 ' to delete another user'))
+                return redirect('users_list')
+            return super().dispatch(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, 'Unable to delete user')
+            return redirect(self.success_url)
 
 
 class UserLoginView(SuccessMessageMixin, LoginView):

@@ -8,6 +8,22 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserCreateForm(UserCreationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control',
+                   'placeholder': _('Username')}),
+        required=True)
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control',
+                   'placeholder': _('First name')}),
+        required=True)
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control',
+                   'placeholder': _('Last name')}),
+        required=True)
+
     class Meta:
         model = User
         fields = ['username',
@@ -16,23 +32,6 @@ class CustomUserCreateForm(UserCreationForm):
                   'password1',
                   'password2'
                   ]
-        widgets = {
-            'username': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': _('Username')
-                }),
-            'first_name': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': _('First name')
-                }),
-            'last_name': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': _('Last name')
-                }),
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -47,26 +46,25 @@ class CustomUserCreateForm(UserCreationForm):
 
 
 class CustomUserUpdateForm(UserChangeForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control',
+                   'placeholder': _('Username')}),
+        required=True)
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control',
+                   'placeholder': _('First name')}),
+        required=True)
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control',
+                   'placeholder': _('Last name')}),
+        required=True)
+
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'password']
-        widgets = {
-            'username': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': _('Username')
-                }),
-            'first_name': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': _('First name')
-                }),
-            'last_name': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': _('Last name')
-                }),
-        }
 
 
 class LoginUserForm(AuthenticationForm):

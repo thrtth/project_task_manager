@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div>
+    <h1 class="my-4">{% translate 'Tasks' %}</h1>
+    <a class="btn btn-primary" href="{% url 'task_create' %}" role="button">{% translate 'Create task' %}</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>{% translate 'Name' %}</th>
+            <th>{% translate 'Status' %}</th>
+            <th>{% translate 'Author' %}</th>
+            <th>{% translate 'Executor' %}</th>
+            <th>{% translate 'Creation date' %}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>
+                <a href="{% url 'task_view' task.id %}">{{ task.name }}</a>
+            </td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.author.first_name }} {{ task.author.last_name }}</td>
+            <td>
+                {% if task.executor %}
+                {{ task.executor.first_name }} {{ task.executor.last_name }}
+                {% endif %}
+            </td>
+            <td>{{ task.created_at }}</td>
+            <td class="text-end">
+                <a class="btn btn-outline-primary btn-sm" href="{% url 'task_update' task.id %}" role="button">{% translate 'Edit' %}</a>
+                <a class="btn btn-outline-primary btn-sm" href="{% url 'task_delete' task.id %}" role="button">{% translate 'Delete' %}</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
