@@ -24,6 +24,10 @@
             <label class="form-label" for="{{ form.executor.id_for_label }}">{% translate 'Executor' %}</label>
             {{ form.executor }}
         </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.labels.id_for_label }}">{% translate 'Labels' %}</label>
+            {{ form.labels }}
+        </div>
 
         <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
 

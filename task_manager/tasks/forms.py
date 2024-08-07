@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 
@@ -27,10 +28,15 @@ class TaskForm(forms.ModelForm):
             attrs={'class': 'form-select', 'placeholder': _('Executor')}),
         required=False
     )
+    labels = forms.ModelMultipleChoiceField(
+        queryset=Label.objects.all(),
+        widget=forms.SelectMultiple(attrs={'class': 'form-select'}),
+        required=False,
+    )
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'status', 'executor']
+        fields = ['name', 'description', 'status', 'executor', 'labels']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

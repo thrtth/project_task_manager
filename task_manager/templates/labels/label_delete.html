@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">{% translate 'Delete label' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{% translate 'Are you sure you want to delete' %} {{ label.name }}?</p>
+        <input class="btn btn-danger" type="submit" value="{% translate 'Delete' %}">
+        <a class="btn btn-primary" href="{% url 'labels' %}">{% translate 'Cancel' %}</a>
+    </form>
+
+</div>
+{% endblock %}
