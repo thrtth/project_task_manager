@@ -2,6 +2,7 @@ import pytest
 from django.contrib.auth.models import User
 from django.urls import reverse
 from task_manager.statuses.models import Status
+from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.models import Task
 
 USERNAME = 'newuser'
@@ -77,3 +78,19 @@ def test_task_delete(logged_client, create_user, create_task):
                                           args=[create_task.id]))
     assert response.status_code == 302
     assert not Task.objects.filter(name=create_task.name).exists()
+
+
+@pytest.mark.django_db
+def test_task_filter(logged_client, create_user):
+    status_1 = Status.objects.create(name='Test1')
+    status_2 = Status.objects.create(name='Test2')
+    task_1 = Task.objects.create(name='TestTask1',
+                                 status=status_1,
+                                 author=create_user)
+    task_2 = Task.objects.create(name='TestTask2',
+                                 status=status_2,
+                                 author=create_user)
+    filter_data = {'status': status_1.id}
+    task_filter = TaskFilter(filter_data, queryset=Task.objects.all()).qs
+    assert task_1 in task_filter
+    assert task_2 not in task_filter

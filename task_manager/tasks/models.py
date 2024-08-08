@@ -16,5 +16,9 @@ class Task(models.Model):
     executor = models.ForeignKey(User, on_delete=models.SET_NULL,
                                  null=True, blank=True,
                                  related_name='executor_tasks')
-    labels = models.ManyToManyField(Label, blank=True, related_name='label_tasks')
+    labels = models.ManyToManyField(Label,
+                                    blank=True, related_name='label_tasks')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['id']

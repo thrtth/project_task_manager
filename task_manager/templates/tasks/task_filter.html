@@ -4,6 +4,39 @@
 <div>
     <h1 class="my-4">{% translate 'Tasks' %}</h1>
     <a class="btn btn-primary" href="{% url 'task_create' %}" role="button">{% translate 'Create task' %}</a>
+
+
+    <div class="card mb-3 mt-3">
+        <div class="card-body bg-light">
+            <form class="form-inline center" method="get">
+                {% csrf_token %}
+
+                {% include 'errors.html' %}
+
+                <div class="mb-3">
+                    <label class="form-label" for="{{ filter.form.status.id_for_label }}">{% translate 'Status' %}</label>
+                    {{ filter.form.status }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="{{ filter.form.executor.id_for_label }}">{% translate 'Executor' %}</label>
+                    {{ filter.form.executor }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="{{ filter.form.labels.id_for_label }}">{% translate 'Label' %}</label>
+                    {{ filter.form.labels }}
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        {{ filter.form.self_tasks }}
+                        <label class="form-check-label" for="{{ filter.form.self_tasks.id_for_label }}">{% translate 'My tasks only' %}</label>
+                    </div>
+                </div>
+                <input class="btn btn-primary" type="submit" value="{% translate 'Show' %}">
+            </form>
+        </div>
+    </div>
+
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -17,7 +50,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for task in tasks %}
+        {% for task in filter.qs %}
         <tr>
             <td>{{ task.id }}</td>
             <td>

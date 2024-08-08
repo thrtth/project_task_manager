@@ -16,6 +16,7 @@ gunicorn = "^22.0.0"
 uvicorn = "^0.30.3"
 django-bootstrap5 = "^24.2"
 pytest-django = "^4.8.0"
+django-filter = "^24.3"
 
 
 [build-system]
