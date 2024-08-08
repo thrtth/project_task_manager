@@ -55,5 +55,5 @@ class StatusDeleteView(LoginRequiredMixin,
         try:
             return super().dispatch(request, *args, **kwargs)
         except ProtectedError:
-            messages.error(request, 'Unable to delete status')
+            messages.error(request, _('Unable to delete status'))
             return redirect(self.success_url)
