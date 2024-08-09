@@ -63,6 +63,7 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = User
     template_name = 'users/user_delete.html'
     success_url = reverse_lazy('users_list')
+    success_message = _('User successfully deleted')
 
     def dispatch(self, request, *args, **kwargs):
         try:
