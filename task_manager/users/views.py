@@ -36,7 +36,7 @@ class UserCreateView(SuccessMessageMixin,
     model = User
     form_class = CustomUserCreateForm
     template_name = 'users/user_create.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('login')
     success_message = _('User successfully added')
 
 
