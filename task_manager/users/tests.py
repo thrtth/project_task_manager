@@ -48,7 +48,10 @@ def test_user_update(client, create_user):
                                    kwargs={'pk': create_user.pk}),
                            {'username': UPDATE_USERNAME,
                             'first_name': FIRST_NAME,
-                            'last_name': LAST_NAME})
+                            'last_name': LAST_NAME,
+                            'password1': PASSWORD1,
+                            'password2': PASSWORD2,
+                            })
     assert response.status_code == 302
     create_user.refresh_from_db()
     assert create_user.username == UPDATE_USERNAME
