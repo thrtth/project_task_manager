@@ -126,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'task_manager', 'locale'),)
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
