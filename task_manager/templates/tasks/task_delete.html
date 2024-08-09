@@ -6,7 +6,7 @@
     <form method="post">
         {% csrf_token %}
         <p>{% translate 'Are you sure you want to delete' %} {{ task.name }}?</p>
-        <input class="btn btn-danger" type="submit" value="{% translate 'Delete' %}">
+        <input class="btn btn-danger" type="submit" value="{% translate 'Yes, delete' %}">
         <a class="btn btn-primary" href="{% url 'tasks' %}">{% translate 'Cancel' %}</a>
     </form>
 
