@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import (
     ListView,
     CreateView,
@@ -50,9 +50,9 @@ class LabelDeleteView(LoginRequiredMixin,
     success_url = reverse_lazy('labels')
     success_message = _('Label successfully deleted')
 
-    def dispatch(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.label_tasks.exists():
             messages.error(request, _('Cannot delete the label'))
-            return redirect('labels')
-        return super().dispatch(request, *args, **kwargs)
+            return redirect(reverse('labels'))
+        return super().post(request, *args, **kwargs)
