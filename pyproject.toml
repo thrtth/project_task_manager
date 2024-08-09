@@ -17,7 +17,7 @@ uvicorn = "^0.30.3"
 django-bootstrap5 = "^24.2"
 pytest-django = "^4.8.0"
 django-filter = "^24.3"
-rollbar = "^1.0.0"
+rollbar = "^0.16.3"
 
 
 [build-system]
