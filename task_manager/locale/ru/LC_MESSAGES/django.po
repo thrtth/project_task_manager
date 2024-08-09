@@ -93,7 +93,7 @@ msgstr "Задача успешно удалена"
 
 #: .\tasks\views.py:69
 msgid "You do not have permission to delete task"
-msgstr "У вас нет доступа для удаления задачи"
+msgstr "Задачу может удалить только ее автор"
 
 #: .\templates\base.html:14
 msgid "Task manager"
