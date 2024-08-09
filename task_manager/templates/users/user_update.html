@@ -20,6 +20,15 @@
             <label class="form-label" for="{{ form.username.id_for_label }}">{% translate 'Username' %}</label>
             {{ form.username }}
         </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.password1.id_for_label }}">{% translate 'Password' %}</label>
+            {{ form.password1 }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.password2.id_for_label }}">{% translate 'Password confirm' %}</label>
+            {{ form.password2 }}
+        </div>
 
         <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
 
