@@ -59,7 +59,7 @@ class UserUpdateView(LoginRequiredMixin,
         return super().dispatch(request, *args, **kwargs)
 
 
-class UserDeleteView(LoginRequiredMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = User
     template_name = 'users/user_delete.html'
     success_url = reverse_lazy('users_list')
@@ -75,7 +75,7 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
                 return redirect('users_list')
             return super().dispatch(request, *args, **kwargs)
         except ProtectedError:
-            messages.error(request, 'Unable to delete user')
+            messages.error(request, _('Unable to delete user'))
             return redirect(self.success_url)
 
 
