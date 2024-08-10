@@ -42,7 +42,8 @@ jobs:
 
     - name: Verify Django Installation
       run: |
-       python -m django --version
+        poetry env info
+        poetry run python -m django --version
 
     - name: Lint with flake8
       run: |
