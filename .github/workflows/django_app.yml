@@ -52,6 +52,7 @@ jobs:
 
     - name: Test with pytest
       env:
+        SECRET_KEY: ${{secrets.SECRET_KEY}}
         DATABASE_URL: postgres://postgres:pass@localhost:5432/test_db
       run: |
         make test
@@ -60,6 +61,7 @@ jobs:
       uses: paambaati/codeclimate-action@v5.0.0
       if: github.ref_name == 'main'
       env:
+        SECRET_KEY: ${{secrets.SECRET_KEY}}
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
       with:
         coverageCommand: make test-coverage
