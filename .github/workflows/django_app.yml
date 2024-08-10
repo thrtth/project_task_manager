@@ -40,11 +40,6 @@ jobs:
         pip install poetry
         poetry install
 
-    - name: Verify Django Installation
-      run: |
-        poetry env info
-        poetry run python -m django --version
-
     - name: Lint with flake8
       run: |
         make lint
@@ -53,7 +48,7 @@ jobs:
       env:
         DATABASE_URL: postgres://postgres:pass@localhost:5432/test_db
       run: |
-        python manage.py migrate
+        poetry run python manage.py migrate
 
     - name: Test with pytest
       env:
